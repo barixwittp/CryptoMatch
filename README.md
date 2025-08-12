@@ -1,86 +1,128 @@
-This is a decentralized gaming platform built on the Ethereum Sepolia testnet. It provides a simple, secure, and transparent way for two players to stake a custom token called "GameToken" (GT) against each other in a match. The platform's components—smart contracts, a backend gateway, a simple frontend, and a real-time leaderboard—work together to provide a seamless gaming experience on the blockchain.
+# 🎮 Decentralized Gaming Platform (Ethereum Sepolia)
 
-🚀 Key Features
-Decentralized Staking: Matches are managed by an escrow smart contract that securely holds the stakes. Payouts are automated, ensuring the winner receives both players' stakes immediately after the result is submitted.
+A **decentralized gaming platform** built on the **Ethereum Sepolia testnet** that enables two players to stake a custom ERC-20 token called **GameToken (GT)** against each other in matches.  
 
-Token On-Ramp: Users can easily acquire GT tokens by exchanging a mock USDT token through a smart contract.
+The system includes:
+- **Smart Contracts** for token minting, escrow, and match handling
+- **Backend API** for interaction with the blockchain
+- **Frontend UI** for players
+- **Real-Time Leaderboard** service
 
-Simple Interface: The application features a clean, single-page web interface where users can connect their MetaMask wallet, buy tokens, create matches, and submit results.
+---
 
-Real-Time Leaderboard: A separate service listens to blockchain events in real-time to maintain and display a leaderboard of top players based on their winnings.
+## 🚀 Key Features
 
-Developer-Friendly: The platform is built with Hardhat and ethers.js, providing a robust and easy-to-understand codebase for building decentralized applications.
+- **🛡 Decentralized Staking**  
+  Matches are managed by an **escrow smart contract** that securely holds both players’ stakes.  
+  Automated payouts ensure the winner instantly receives both stakes when the result is submitted.
 
-🛠️ Getting Started
-Follow these steps to set up and run the project locally.
+- **💱 Token On-Ramp**  
+  Acquire **GT tokens** by exchanging mock **USDT** through a dedicated smart contract.
 
-Prerequisites
-Node.js (v18+)
+- **🖥 Simple Interface**  
+  - Connect your MetaMask wallet  
+  - Buy tokens  
+  - Create matches & stake tokens  
+  - Submit results
 
-npm (v8+)
+- **📊 Real-Time Leaderboard**  
+  A separate service listens to blockchain events to maintain a **leaderboard of top players**.
 
-MetaMask browser extension
+- **👨‍💻 Developer-Friendly**  
+  Built with **Hardhat** + **ethers.js** for an easy-to-understand, extendable codebase.
 
-A Sepolia testnet RPC URL (e.g., from Alchemy) and a private key with some SepoliaETH for gas fees.
+---
 
-Installation
+## 🛠 Getting Started
+
+### **Prerequisites**
+Ensure you have the following installed:
+
+| Tool | Version | Link |
+|------|---------|------|
+| Node.js | v18+ | [Download](https://nodejs.org/) |
+| npm | v8+ | Included with Node.js |
+| MetaMask | Latest | [Install](https://metamask.io/) |
+| Sepolia ETH | - | [Get from faucet](https://sepoliafaucet.com/) |
+
+You will also need:
+- A **Sepolia RPC URL** from [Alchemy](https://www.alchemy.com/), [Infura](https://infura.io/), or QuickNode
+- Your **MetaMask private key** with Sepolia ETH
+
+---
+
+## 📦 Installation
+
 Clone the repository:
-
-Bash
-
+```bash
 git clone https://github.com/your-username/your-repo-name.git
 cd your-repo-name
-Install dependencies:
 
-Bash
+⚙️ Configuration
+Create a .env file in the root directory:
 
-npm install
-Configuration
-Create a .env file in the root directory.
-
-Bash
-
+bash
+Copy
+Edit
 touch .env
-Add your credentials to the .env file:
+Add your credentials:
 
-Bash
-
+env
+Copy
+Edit
 PRIVATE_KEY="your_metamask_private_key"
 SEPOLIA_RPC_URL="your_sepolia_rpc_url_from_alchemy"
-Deployment
-Compile the smart contracts:
-
-Bash
-
+🚢 Deployment
+1️⃣ Compile Smart Contracts
+bash
+Copy
+Edit
 npx hardhat compile
-Deploy the contracts to Sepolia:
-
-Bash
-
+2️⃣ Deploy to Sepolia
+bash
+Copy
+Edit
 npx hardhat run scripts/deploy.js --network sepolia
-This will output the deployed contract addresses. Copy these addresses and add them to your .env file for the backend to use.
+When deployed, you will see contract addresses in the console.
+Add them to your .env:
 
+env
+Copy
+Edit
+TOKENSTORE_ADDRESS=0xYourTokenStoreAddress
+PLAYGAME_ADDRESS=0xYourPlayGameAddress
+GAME_TOKEN_ADDRESS=0xYourGameTokenAddress
+USDT_ADDRESS=0xYourMockUSDTAddress
 🌐 Usage
-To use the application, you must run the backend, the leaderboard service, and the frontend.
-
-Start the Backend API:
-
-Bash
-
+1️⃣ Start Backend API
+bash
+Copy
+Edit
 cd api
-node server.js
-The API will run on http://localhost:3000.
+node index.js
+Runs at: http://localhost:3000
 
-Start the Leaderboard Service:
+2️⃣ Start Leaderboard Service
+bash
+Copy
+Edit
+node tools/leaderboard.js
+Runs at: http://localhost:4001/leaderboard
 
-Bash
+3️⃣ Open Frontend
+Open web/index.html in your browser and connect MetaMask.
 
-cd tools
-node leaderboard.js
-This service will listen for blockchain events and provide the leaderboard data.
+🔄 Workflow
+Connect MetaMask to Sepolia network
 
-Open the Frontend:
-Open the web/index.html file in your browser to interact with the application.
+Acquire Sepolia ETH & mock USDT
 
-This video demonstrates how to document your code with GitHub Wikis.
-https://www.youtube.com/watch?v=4gPJV96fvno
+Approve TokenStore contract to spend USDT
+
+Buy GameToken (GT)
+
+Create a match & stake GT
+
+Submit results to receive winnings
+
+View the updated leaderboard
