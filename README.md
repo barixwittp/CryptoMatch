@@ -150,10 +150,4 @@ Follow these simple steps to set up the project:
 
 ---
 
-## 👋 Contributing
-We welcome contributions! If you have suggestions or want to improve the project, please feel free to open an issue or a pull request.
 
----
-
-## ⚖️ License
-This project is licensed under the **MIT License**.
